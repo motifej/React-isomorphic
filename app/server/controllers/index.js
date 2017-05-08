@@ -1,6 +1,8 @@
 import Router from 'koa-router'
 import configureAuntificate from './Auntificate'
 
+export { default as configureRenderApp } from './RenderApp'
+
 export function configurePublic() {
   const publicRouter = Router({
     prefix: '/api'

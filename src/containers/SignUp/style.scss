@@ -1,0 +1,64 @@
+
+.signup_link{
+  margin: auto;
+}
+
+.form {
+  padding: 0 15px 57px 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 325px;
+  height: 350px;
+}
+
+.success{
+    text-align: -webkit-center;
+    justify-content: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.birthday{
+  display: flex;
+  width: 100%;
+  margin: 0 auto 30px;
+}
+
+.custom_btn{
+    border: solid rgb(0, 188, 212) 1px;
+    width: 140px;
+    margin: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(0, 188, 212);
+    border-radius: 6px;
+    line-height: 40px;
+}
+
+.custom_btn:hover{
+  color:  rgb(0, 150, 212);
+}
+
+.title {
+  color: rgb(0, 188, 212);
+}
+
+.sign_up {
+  text-align: center;
+  justify-content: center;
+  width: 375px;
+  border: solid #b1adad 3px;
+  border-radius: 7px;
+}
+
+.btn_grope {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0 -15px;
+  padding:10px 0;
+  border-top: solid #b1adad 1px;
+}

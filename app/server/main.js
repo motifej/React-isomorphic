@@ -4,7 +4,7 @@ import cluster from 'cluster'
 import os from 'os'
 import winstonKoaLogger from 'koa-logger-winston'
 import logger from 'winston'
-import { configurePublic, configureCors } from './controllers'
+import { configurePublic, configureCors, configureRenderApp } from './controllers'
 
 if (cluster.isMaster) {
   const numCpus = os.cpus().length
@@ -12,7 +12,7 @@ if (cluster.isMaster) {
     cluster.fork()
   }
   cluster.on('exit', () => {
-    console.log('[WARN] Worker %d died with code/signal %s. Restarting worker...')//eslint-disable-line no-console
+    console.log('[WARN] Worker %d died with code/signal %s. Restarting worker...') // eslint-disable-line no-console
     cluster.fork()
   })
 } else {
@@ -21,7 +21,7 @@ if (cluster.isMaster) {
 
   app.use(BodyParser())
   app.use(configureCors())
-
+  configureRenderApp(app);
   app.use(configurePublic())
 
   app.use(ctx => {
