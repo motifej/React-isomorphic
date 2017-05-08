@@ -8,8 +8,8 @@ import * as Api from '../api'
 
 function* signUp(action) {
   try {
-    const user = yield call(() => Api.signUp(action.payload))
-    yield put({ type: REGISTER_USER_SUCCESS, user })
+    const userData = yield call(() => Api.signUp(action.payload))
+    yield put({ type: REGISTER_USER_SUCCESS, userData })
   } catch(error) {
     yield put({ type: REGISTER_USER_FAILURE, error })
   }

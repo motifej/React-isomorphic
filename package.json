@@ -8,7 +8,7 @@
     "start": "./node_modules/.bin/nodemon index.js",
     "lint:js": "eslint ./src",
     "lint-staged": "lint-staged",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "babel-preset-react": "^6.24.1",
@@ -48,6 +48,7 @@
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-require-ignore": "^0.1.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -56,6 +57,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "css-loader": "^0.28.1",
+    "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-prettier": "^2.0.0",
@@ -64,12 +66,15 @@
     "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-react": "^7.0.0",
     "extract-text-webpack-plugin": "^2.1.0",
+    "jest": "^20.0.0",
     "koa-webpack-dev-middleware": "^1.4.5",
     "koa-webpack-hot-middleware": "^1.0.3",
     "lint-staged": "^3.4.1",
     "node-sass": "^4.5.2",
     "postcss-loader": "^2.0.1",
     "pre-commit": "^1.2.2",
+    "react-addons-test-utils": "^15.5.1",
+    "react-test-renderer": "^15.5.4",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.17.0",
     "url-loader": "^0.5.8",
@@ -103,6 +108,9 @@
     "env": {
       "node": true
     }
+  },
+  "jest": {
+    "testRegex": "(/test/.*\\.spec.js)$"
   },
   "babel": {
     "presets": [
