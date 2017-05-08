@@ -11,6 +11,6 @@ const iconStyles = {
 export default () => (
   <div className='success'>
     <ActionCheckCircle style={iconStyles} color={greenA200} />
-    <Link to="/" className='custom_btn'>Go to Dashboard</Link>
+    <Link to="/dashboard" className='custom_btn'>Go to Dashboard</Link>
   </div>
 )

@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Field, reduxForm } from "redux-form"
-import { TextField, AutoComplete } from 'redux-form-material-ui'
+import { TextField, SelectField } from 'redux-form-material-ui'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import FlatButton from 'material-ui/FlatButton'
@@ -9,7 +9,7 @@ import MenuItem from 'material-ui/MenuItem' // eslint-disable-line
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import validate, { between, numberX } from "./validate"
 
-const renderTabs = ({ input, ...custom }) => ( // eslint-disable-line
+const renderTabs = ({ input, meta, ...custom }) => ( // eslint-disable-line
   <Tabs {...custom} onChange={value => input.onChange(value)} />
 );
 
@@ -54,25 +54,21 @@ const SignUpFormSecondPage = props => {
           />
         </div>
         <Field name="sex" component={renderTabs}>
+          <Tab label="UNSPECIFIED" value="unspecified" />
           <Tab label="MALE" value="male" />
           <Tab label="FEMALE" value="female" />
-          <Tab label="UNSPECIFIED" value="unspecified" />
         </Field>
         <Field
-          name="referral"
+          name="referal"
+          component={SelectField}
           fullWidth
-          component={AutoComplete}
+          hintText="How did you find us?"
           floatingLabelText="How did you find us?"
-          openOnFocus
-          dataSourceConfig={{ text: "name", value: "name" }}
-          dataSource={[
-            { id: 0, name: "Facebook" },
-            { id: 1, name: "Yelp" },
-            { id: 2, name: "TV Ad" },
-            { id: 3, name: "Friend" },
-            { id: 4, name: "Other" }
-          ]}
-        />
+        >
+          <MenuItem value="social network" primaryText="social network" />
+          <MenuItem value="friends" primaryText="friends" />
+          <MenuItem value="Other source" primaryText="Other source" />
+        </Field>
         <div className="btn_grope">
           <FlatButton
             label="Previous"

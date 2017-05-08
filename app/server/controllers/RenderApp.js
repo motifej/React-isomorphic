@@ -2,6 +2,7 @@
 import convert from "koa-convert";
 import webpack from "webpack";
 import React from "react";
+import fs from 'fs'
 import { renderToStaticMarkup } from "react-dom/server";
 import { Provider } from "react-redux";
 import { RouterContext, match } from "react-router";
@@ -15,7 +16,7 @@ import webpackConfig from "../../../webpack.config";
 
 const compiler = webpack(webpackConfig);
 
-function renderFullPage(html, preloadedState) {
+function renderFullPage(html, css, preloadedState) {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -29,6 +30,7 @@ function renderFullPage(html, preloadedState) {
         <script>
         window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
         </script>
+        <style type="text/css">${css}</style>
         <script src="/asset/bundle.js"></script>
     </body>
     </html>`;
@@ -62,7 +64,7 @@ export default function configureRenderApp(app) {
 
   app.use(async ctx => {
     // Create a new Redux store instance
-    const store = configureStore({ user: null });
+    const store = configureStore({ user: {} });
     // Grab the initial state from our Redux store
     const finalState = store.getState();
     match({ routes, location: ctx.url }, function(
@@ -82,7 +84,8 @@ export default function configureRenderApp(app) {
             </MuiThemeProvider>
           </Provider>
         );
-        ctx.body = renderFullPage(html, finalState);
+        const css = fs.readFileSync('./static/style.css');// FIX in further
+        ctx.body = renderFullPage(html, css, finalState);
       } else {
         ctx.status = 404;
         ctx.body = "not found!";

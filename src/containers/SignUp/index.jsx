@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func } from 'prop-types';
+import { shape, func } from 'prop-types';
 import LinearProgress from 'material-ui/LinearProgress';
 import FirstPage from './FirstPage';
 import SecondPage from './SecondPage';
@@ -17,9 +17,18 @@ const styleProgress = {
 
 class SignUp extends Component {
 
-  static propTypes = {
-    onSubmit: func.isRequired,
+  static defaultProps = {
+    actions: {
+      signUp: ()=>{}
+    },
   }
+
+  static propTypes = {
+    actions: shape({
+      signUp: func,
+      reset: func
+    })
+  };
 
   state = {
     page: 1,
@@ -27,17 +36,23 @@ class SignUp extends Component {
 
   nextPage = () => this.setState({ page: this.state.page + 1 })
 
+  submit = (data) => {
+    const { reset, signUp } = this.props.actions;
+    signUp(data);
+    reset('signup');
+    this.nextPage();
+  }
+
   prevPage = () => this.setState({ page: this.state.page - 1 })
 
   render() {
-    // const { onSubmit } = this.props;
     const { page } = this.state;
     return (
       <div className='sign_up'>
         <h1 className='title'>{page === 3 ? 'Thank you!' : 'SignUp'}</h1>
         <LinearProgress mode="determinate" value={page*100/3} style={styleProgress} />
         {page === 1 && <FirstPage onSubmit={this.nextPage} />}
-        {page === 2 && <SecondPage prevPage={this.prevPage} onSubmit={this.nextPage} />}
+        {page === 2 && <SecondPage prevPage={this.prevPage} onSubmit={this.submit} />}
         {page === 3 && <ThirdPage />}
       </div>
     );

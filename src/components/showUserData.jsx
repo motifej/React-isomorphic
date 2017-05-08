@@ -11,8 +11,12 @@ const UserData = ({ user }) => (
   </div>
 )
 
+UserData.defaultProps = {
+    user: {}
+}
+
 UserData.propTypes = {
-    user: PropTypes.obj.isRequired,
+    user: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 }
 
 export default UserData

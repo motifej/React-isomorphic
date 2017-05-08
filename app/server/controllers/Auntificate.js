@@ -1,16 +1,17 @@
 import Router from 'koa-router'
 
-const singUp = ctx => {
-  const { email='', passw='' } = ctx.request.body
-  if (passw.length < 6) {
+const signUp = ctx => {
+  const { password='' } = ctx.request.body
+  if (password.length < 6) {
     ctx.status = 400
     ctx.body = {
         error: 'Passw less than 6',
     }
   } else {
-    ctx.body = {
-        email,
-    }
+    const user = { ...ctx.request.body }
+    user.password = '*******'
+    delete user.confPassword
+    ctx.body = user
   }
 }
 
@@ -24,7 +25,7 @@ const setUserInfo = ctx => {
 
 export default function configureNotify() {
   const router = Router()
-  router.post('/singup', singUp)
+  router.post('/signup', signUp)
   router.put('/setinfo', setUserInfo)
   return router.routes()
 }
