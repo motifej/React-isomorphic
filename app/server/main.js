@@ -8,7 +8,7 @@ import { configurePublic, configureCors } from './controllers'
 
 if (cluster.isMaster) {
   const numCpus = os.cpus().length
-  for( let i = 0; i < numCpus; i++ ) {
+  for( let i = 0; i < numCpus; i+=1 ) {
     cluster.fork()
   }
   cluster.on('exit', () => {
