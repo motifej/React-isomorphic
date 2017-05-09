@@ -23,7 +23,7 @@ function renderFullPage(html, css, preloadedState) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
-        <title>Redux Universal Example</title>
+        <title>Auth App</title>
     </head>
     <body>
         <div id="app">${html}</div>

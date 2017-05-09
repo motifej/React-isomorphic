@@ -6,7 +6,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import validate from "./validate";
 
-const SignUpFormFirstPage = props => {
+export const SignUpFormFirstPage = props => {
   const { handleSubmit } = props;
   return (
     <ReactCSSTransitionGroup
@@ -37,7 +37,7 @@ const SignUpFormFirstPage = props => {
             label="password"
           />
         </div>
-        <div>
+        <div className="fild">
           <Field
             name="confPassword"
             type="password"

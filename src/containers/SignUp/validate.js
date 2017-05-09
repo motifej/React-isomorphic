@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const validate = values => {
   const errors = {};
   const requiredFields = [
@@ -12,6 +14,9 @@ const validate = values => {
       errors[field] = 'Required';
     }
   });
+  if (values.year&&values.year.length < 4) {
+    errors.year = 'year should be YYYY';
+  }
   if (
     values.email &&
     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
@@ -53,3 +58,9 @@ export const numberX = (x) => (value) => {
 
   return onlyNums.slice(0,x)
 }
+
+export const checkDate = (dd,mm,yy) =>
+  moment(`${dd}/${mm}/${yy}`,'DD/MM/YYYY').isValid()
+
+export const getAge = (dd,mm,yy) =>
+  Number.parseInt(moment(`${dd}/${mm}/${yy}`,'DD/MM/YYYY').fromNow(), 10)
