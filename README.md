@@ -1,5 +1,7 @@
 # React-isomorphic
 ## getting started
+nvm use (or use node 7.x.x)
+
 use yarn:
 ```
 yarn
